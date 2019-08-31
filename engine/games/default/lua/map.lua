@@ -1,0 +1,5 @@
+setSkyColor(20,100,250)
+--dust=createEntity("assets/models/dust2/source/de_dust2.fbx")
+--setEntityPos(boule,-300,30,120)
+--setEntityScale(dust,0.2,0.2,0.2)
+--setEntityAng(dust,math.rad(-90),0,0)

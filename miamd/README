@@ -1,0 +1,13 @@
+the controller takes parameters to control the music daemon :
+miamd-controller $arg
+arg = f    -> toggle favorite
+arg = s    -> toggle shit
+arg = p    -> toggle pause
+arg = ">"  -> next
+You need a database(either a mysql server or a sqlite file) with a "musics" table containing these rows (sorry for french):
+
+nom                                    | lien                                    | favorite | shit
+
+nom = name
+lien = path (can be a youtube link if you have youtube-dl in your $PATH)
+

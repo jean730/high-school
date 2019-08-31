@@ -1,0 +1,16 @@
+[
+{
+  "modid": "wipmod",
+  "name": "WIP Mod",
+  "description": "Work In Progress mod",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["povibi"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

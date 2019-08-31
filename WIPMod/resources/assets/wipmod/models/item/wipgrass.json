@@ -1,0 +1,8 @@
+{
+  "parent": "item/generated",
+  "textures": {
+      "inventory": "wipmod:blocks/wipgrass",
+      "layer_0": "wipmod:blocks/wipgrass"
+  },
+  "model": "cube_all"
+}

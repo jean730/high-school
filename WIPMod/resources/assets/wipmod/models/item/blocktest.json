@@ -1,0 +1,8 @@
+{
+  "parent": "item/generated",
+  "textures": {
+      "inventory": "wipmod:blocks/blocktest",
+      "layer_0": "wipmod:blocks/blocktest"
+  },
+  "model": "cube_all"
+}

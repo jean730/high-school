@@ -1,0 +1,48 @@
+project('game','cpp')
+src=[
+  'src/entity.cpp',
+  'src/eventListener.cpp',
+  'src/game.cpp',
+  'src/GL.cpp',
+  'src/global.cpp',
+  'src/init.cpp',
+  'src/luafunc.cpp',
+  'src/main.cpp',
+  'src/mesh.cpp',
+  'src/misc.cpp',
+  'src/model.cpp',
+  'src/render.cpp',
+  'src/terrain.cpp',
+  'src/shell.cpp'
+  ]
+headers = include_directories('include')
+sfmlsystem=dependency('sfml-system')
+sfmlgraphics=dependency('sfml-graphics')
+sfmlwindow=dependency('sfml-window')
+GL=dependency('GL')
+GLEW=dependency('GLEW')
+threads=dependency('threads')
+x11=dependency('x11')
+glm=dependency('glm')
+assimp=dependency('assimp')
+readline=dependency('readline')
+lua=dependency('lua')
+executable(
+  'game',
+  src,
+  dependencies : [
+    sfmlsystem,
+    sfmlwindow,
+    sfmlgraphics,
+    GL,
+    GLEW,
+    threads,
+    x11,
+    glm,
+    lua,
+    readline,
+    assimp
+    ],
+  include_directories : headers,
+  link_args : '-lnoise'
+  )

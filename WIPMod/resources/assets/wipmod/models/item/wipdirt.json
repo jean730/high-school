@@ -1,0 +1,8 @@
+{
+  "parent": "item/generated",
+  "textures": {
+      "inventory": "wipmod:blocks/wipdirt",
+      "layer_0": "wipmod:blocks/wipdirt"
+  },
+  "model": "cube_all"
+}

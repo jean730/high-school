@@ -1,0 +1,19 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "up": "wipmod:blocks/wipgrass",
+      "down": "wipmod:blocks/wipdirt",
+      "north": "wipmod:blocks/wipgrassside",
+      "west": "wipmod:blocks/wipgrassside",
+      "south": "wipmod:blocks/wipgrassside",
+      "east": "wipmod:blocks/wipgrassside",
+      "particle": "wipmod:blocks/wipgrass"
+    },
+    "model": "cube",
+    "uvlock": true
+  },
+  "variants": {
+    "normal": [{}]
+  }
+}
