@@ -11,6 +11,7 @@ This repo contains a compilation of projects I made during High school. Those pr
 - shadowcasting : A shadowcasting 2D experiment
 
 # markov :
+The big text was found on the internet, the sentence next to "generate" was generated.
 ![markov/screenshot.jpg](./markov/screenshot.jpg)
 
 # WIPMod
