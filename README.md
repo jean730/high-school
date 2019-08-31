@@ -11,34 +11,33 @@ This repo contains a compilation of projects I made during High school. Those pr
 - shadowcasting : A shadowcasting 2D experiment
 
 # markov :
-![markov/screenshot.png] 
- (./markov/screenshot.png)
+![markov/screenshot.png](./markov/screenshot.png)
 
 # WIPMod
-![WIPMod/screenshot1.png] (./WIPMod/screenshot1.png)
-![WIPMod/screenshot.png] (./WIPMod/screenshot.png)
+![WIPMod/screenshot1.png](./WIPMod/screenshot1.png)
+![WIPMod/screenshot.png](./WIPMod/screenshot.png)
 
 # theshell
-![theshell/screenshot.png] (./theshell/screenshot.png)
+![theshell/screenshot.png](./theshell/screenshot.png)
 
 # ISNgame
-![ISNgame/screenshot2.png] (./ISNgame/screenshot2.png)
-![ISNgame/screenshot1.png] (./ISNgame/screenshot1.png)
-![ISNgame/screenshot3.png] (./ISNgame/screenshot3.png)
+![ISNgame/screenshot2.png](./ISNgame/screenshot2.png)
+![ISNgame/screenshot1.png](./ISNgame/screenshot1.png)
+![ISNgame/screenshot3.png](./ISNgame/screenshot3.png)
 
 # game
-![game/screenshot2.png] (./game/screenshot2.png)
-![game/screenshot1.png] (./game/screenshot1.png)
+![game/screenshot2.png](./game/screenshot2.png)
+![game/screenshot1.png](./game/screenshot1.png)
 
 # conway
-![conway/screenshot.png] (./conway/screenshot.png)
+![conway/screenshot.png](./conway/screenshot.png)
 
 # pong
-![pong/screenshot.png] (./pong/screenshot.png)
+![pong/screenshot.png](./pong/screenshot.png)
 
 # shadowcasting
-![shadowcasting/screenshot.png] (./shadowcasting/screenshot.png)
+![shadowcasting/screenshot.png](./shadowcasting/screenshot.png)
 
 # engine
-![engine/screenshot2.png] (./engine/screenshot2.png)
-![engine/screenshot3.png] (./engine/screenshot3.png)
+![engine/screenshot2.png](./engine/screenshot2.png)
+![engine/screenshot3.png](./engine/screenshot3.png)
