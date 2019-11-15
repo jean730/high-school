@@ -13,6 +13,7 @@ src=[
   'src/model.cpp',
   'src/render.cpp',
   'src/terrain.cpp',
+  'src/terrainloader.cpp',
   'src/shell.cpp'
   ]
 headers = include_directories('include')

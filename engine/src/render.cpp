@@ -10,6 +10,7 @@
 #include "misc.h"
 #include "entity.h"
 #include "terrain.h"
+#include "terrainloader.h"
 
 void Render(sf::Window &window, _GAME &GAME){
 
@@ -20,24 +21,36 @@ void Render(sf::Window &window, _GAME &GAME){
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
-	glEnable(GL_CLAMP_TO_BORDER);
+	glCullFace(GL_MULTISAMPLE);
+	glGenerateMipmap(GL_TEXTURE_2D);
+//	glEnable(GL_CLAMP_TO_BORDER);
 //	glEnable(GL_BLEND);
 //	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);  
 	int mx;
 	int my;
-    GAME.Texture=loadTexture("assets/textures/tdiff.jpg");
-    GAME.Norm=loadTexture("assets/textures/tnorm.jpg");
-    GAME.Spec=loadTexture("assets/textures/tspec.jpg");
-    vector<Terrain> Terrains;
-    Terrains.push_back(Terrain(3,1,0,0,100,200,10,std::ref(GAME)));
-    Terrains.push_back(Terrain(3,1,-1,0,100,200,10,std::ref(GAME)));
-    Terrains.push_back(Terrain(3,1,-1,-1,100,200,10,std::ref(GAME)));
-    Terrains.push_back(Terrain(3,1,0,-1,100,200,10,std::ref(GAME)));
-    for(int i=0;i<Terrains.size();i++){
-    	Terrains[i].loadToVAO();
-    }
+	GAME.Texture=loadTexture("assets/textures/tdiff.png");
+	GAME.Norm=loadTexture("assets/textures/tnorm.png");
+	GAME.Spec=loadTexture("assets/textures/tspec.png");
+	TerrainLoader Terrains = TerrainLoader(std::ref(GAME));
 
+	int ChunkDistance = 2;
 	while(GAME.Active){
+		int GridPlayerX = GAME.Position_X/300;
+		int GridPlayerZ = GAME.Position_Z/300;
+		for(int i=0;i<Terrains.Terrains.size();i++){
+			if((Terrains.Terrains[i]->gridX-GridPlayerX)*(Terrains.Terrains[i]->gridX-GridPlayerX)>ChunkDistance*ChunkDistance ||
+			    (Terrains.Terrains[i]->gridZ-GridPlayerZ)*(Terrains.Terrains[i]->gridZ-GridPlayerZ)>ChunkDistance*ChunkDistance){
+				Terrains.delTerrain(i);
+			}
+
+		}
+		for(int i=GridPlayerX-ChunkDistance;i<=GridPlayerX+ChunkDistance;i++){
+			for(int j=GridPlayerZ-ChunkDistance;j<=GridPlayerZ+ChunkDistance;j++){
+				if(!Terrains.checkTerrain(i,j)){
+					Terrains.addTerrain(i,j);	
+				}
+			}
+		}
 		mx = sf::Mouse::getPosition().x - window.getSize().x / 2;
 		my = sf::Mouse::getPosition().y - window.getSize().y / 2;
 		if(GAME.focus){
@@ -78,7 +91,7 @@ void Render(sf::Window &window, _GAME &GAME){
 		glm::mat4 proj = glm::perspective(
 			glm::radians(70.0f),
 			(float)window.getSize().x / (float)window.getSize().y
-			, 0.1f, 10000.0f);
+			, 1.0f, 10000.0f);
 
 		shader.setUniform("action",GAME.KEY_Action);
 		shader.setUniform("model", toGlm(model));
@@ -102,8 +115,8 @@ void Render(sf::Window &window, _GAME &GAME){
 		glm::mat4 terr = model;
 		terr = glm::translate(terr, glm::vec3(0,0,0));
 		terr = glm::scale(terr,glm::vec3(10,0.1,10));
-    		for(int i=0;i<Terrains.size();i++){
-        		Terrains[i].draw(std::ref(shader));
+    		for(int i=0;i<Terrains.Terrains.size();i++){
+        		Terrains.Terrains[i]->draw(std::ref(shader));
 		}
 		for(int i=0;i<(int)GAME.Entities.size();i++){
 			if(GAME.Entities[i].models.size()==0){

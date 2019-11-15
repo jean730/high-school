@@ -1,11 +1,11 @@
 x=-70
 y=35
 z=150
-speed = 1
+speed = 10
 while true do
 ang=getAngX()
 if key_shift() == 1 then
-	if speed < 2 then
+	if speed < 20 then
         speed = speed + 0.1
     end
 else

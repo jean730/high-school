@@ -46,8 +46,8 @@ void Render(sf::Window &window, _GAME &GAME){
             {MPV_RENDER_PARAM_FLIP_Y, &flip_y},
             {MPV_RENDER_PARAM_INVALID, nullptr}
 	};
-	unsigned int W=window.getSize().x;
-	unsigned int H=window.getSize().y;
+	//unsigned int W=window.getSize().x;
+	//unsigned int H=window.getSize().y;
 	unsigned int start;
 	unsigned int end;
 	sf::Event event;
@@ -60,12 +60,12 @@ void Render(sf::Window &window, _GAME &GAME){
             }
         }
 		start = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
-		W=window.getSize().x;
-		H=window.getSize().y;
-		if(mpfbo.w!=(int)W || mpfbo.h!=(int)H){
-		mpfbo.w=W;
-		mpfbo.h=H;
-		}
+	//	W=window.getSize().x;
+	//	H=window.getSize().y;
+	//	if(mpfbo.w!=(int)W || mpfbo.h!=(int)H){
+	//	mpfbo.w=W;
+	//	mpfbo.h=H;
+	//	}
 		mpv_render_context_render(mpv_gl, params2);
 		window.display();
 		end = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();

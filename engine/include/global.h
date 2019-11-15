@@ -36,7 +36,7 @@ class _GAME{
 	bool KEY_Shift = false;
 	bool KEY_Ctrl = false;
 	bool KEY_Action = false;
-	float Speed = 1;
+	float Speed = 10;
     Light lights[LIGHTS];
 	sf::Window *window;
 	bool WindowDefined = false;

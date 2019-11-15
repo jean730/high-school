@@ -66,7 +66,6 @@ void Mesh::draw(sf::Shader &shader){
             number = std::to_string(normalNr++);
 
         shader.setUniform(( name + number).c_str(), (int)i);
-	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);
 	glBindTexture(GL_TEXTURE_2D, textures[i].id.getNativeHandle());
     }
 

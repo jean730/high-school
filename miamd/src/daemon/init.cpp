@@ -77,6 +77,9 @@ void initGame(_GAME &GAME,int argc,char **argv){
 		unsigned int timeout= 2;
 		mysql_optionsv(GAME.database_2, MYSQL_OPT_CONNECT_TIMEOUT, (void *)&timeout);
 	}
+	else if(GAME.backend=="sqlite"){
+		sqlite3_open(GAME.db_file.c_str(),&GAME.database);
+	}
 	if(argc>=2 && strcmp(argv[1],"novid")==0){
 		GAME.Vid="no";
 	}

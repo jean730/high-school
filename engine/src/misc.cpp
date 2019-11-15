@@ -2,6 +2,7 @@
 #include <string>
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <GL/glew.h>
 
 sf::Glsl::Mat4 toGlm(glm::mat4 matrix){
     return sf::Glsl::Mat4(glm::value_ptr(matrix));
@@ -16,7 +17,6 @@ sf::Texture loadTexture(std::string name){
     texture.loadFromImage(image);
     texture.setSmooth(true);
     texture.setRepeated(true);
-    texture.generateMipmap();
     return texture;
 }
 sf::Vector3f toGlmv(glm::vec3 matrix){

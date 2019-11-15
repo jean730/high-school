@@ -11,7 +11,7 @@ using namespace std;
     float Terrain::getPValue(float x,float y,float z){
         float value = perlin.GetValue(x,y,z);
 	if(value<0){
-		value=0;
+		value/=5;
 	}
         return value;
     }
@@ -20,7 +20,7 @@ using namespace std;
 	this->GAME = &GAME;
         perlin.SetSeed(Seed);
         perlin.SetOctaveCount(Occ);
-	perlin.SetPersistence(0.5);
+//	perlin.SetPersistence(0.5);
         gridX = X;
         gridZ = Z;
         glm::vec2 uv1;
@@ -103,8 +103,8 @@ using namespace std;
     void Terrain::loadToVAO()
     {
 	for(int i=0;i<sizeof(Indices);i++){
-                std::cout << "Normals:" << Indices[i] << ":" << Vertices[Indices[i]].Normal.x << ":" << Vertices[Indices[i]].Normal.y << ":" << Vertices[Indices[i]].Normal.z << std::endl;
-                std::cout << "Tangents:" << Indices[i] << ":" << Vertices[Indices[i]].Tangent.x << ":" << Vertices[Indices[i]].Tangent.y << ":" << Vertices[Indices[i]].Tangent.z << std::endl;
+//                std::cout << "Normals:" << Indices[i] << ":" << Vertices[Indices[i]].Normal.x << ":" << Vertices[Indices[i]].Normal.y << ":" << Vertices[Indices[i]].Normal.z << std::endl;
+//                std::cout << "Tangents:" << Indices[i] << ":" << Vertices[Indices[i]].Tangent.x << ":" << Vertices[Indices[i]].Tangent.y << ":" << Vertices[Indices[i]].Tangent.z << std::endl;
 	}
         glGenVertexArrays(1, &VAO);
         glGenBuffers(1, &VBO);
@@ -137,26 +137,49 @@ using namespace std;
         glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex),
                         (void*)offsetof(Vertex, TexCoords));
 
+
+        glActiveTexture(GL_TEXTURE0);
+	sf::Texture::bind(&GAME->Texture);
+        glGenerateMipmap(GL_TEXTURE_2D);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR_MIPMAP_LINEAR);
+
+        glActiveTexture(GL_TEXTURE1);
+	sf::Texture::bind(&GAME->Norm);
+        glGenerateMipmap(GL_TEXTURE_2D);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR_MIPMAP_LINEAR);
+
+        glActiveTexture(GL_TEXTURE2);
+	sf::Texture::bind(&GAME->Spec);
+        glGenerateMipmap(GL_TEXTURE_2D);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR_MIPMAP_LINEAR);
+
         glBindVertexArray(0);
     }
     void Terrain::draw(sf::Shader &shader)
     {
         glBindVertexArray(VAO);
 
-        glActiveTexture(GL_TEXTURE0);
-	shader.setUniform("tex1", 0);
-	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);
+	glActiveTexture(GL_TEXTURE0);
         sf::Texture::bind(&GAME->Texture);
-
-        glActiveTexture(GL_TEXTURE1);
-	shader.setUniform("norm1", 1);
-	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);
+	shader.setUniform("tex1", 0);
+	
+	glActiveTexture(GL_TEXTURE1);
         sf::Texture::bind(&GAME->Norm);
-
-        glActiveTexture(GL_TEXTURE2);
-	shader.setUniform("spec1", 2);
-	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);
+	shader.setUniform("norm1", 1);
+        //glActiveTexture(GL_TEXTURE2);
+	glActiveTexture(GL_TEXTURE2);
         sf::Texture::bind(&GAME->Spec);
+	shader.setUniform("spec1", 2);
+        //sf::Texture::bind(&GAME->Spec);
+	//glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);
+	//glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_LINEAR);
+	//glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR_MIPMAP_LINEAR);
 
         glDrawElements(GL_TRIANGLES, Indices.size(), GL_UNSIGNED_INT, 0);
         glBindVertexArray(0);

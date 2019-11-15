@@ -1,11 +1,12 @@
 project('player','cpp')
 src=[
-  'src/render.cpp',
-  'src/audio.cpp',
-  'src/main.cpp',
-  'src/init.cpp',
-  'src/GL.cpp',
-  'src/game.cpp',
+  'src/daemon/render.cpp',
+  'src/daemon/audio.cpp',
+  'src/daemon/main.cpp',
+  'src/daemon/init.cpp',
+  'src/daemon/GL.cpp',
+  'src/daemon/game.cpp',
+  'src/daemon/global.cpp',
 ]
 sfmlsystem=dependency('sfml-system')
 sfmlnetwork=dependency('sfml-network')
@@ -38,7 +39,7 @@ executable(
   )
 executable(
   'miamd-controller',
-  'controller/main.cpp',
+  'src/client/main.cpp',
   install : true,
   link_args : ['-lrt']
   )

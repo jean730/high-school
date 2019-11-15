@@ -5,7 +5,8 @@
 #include <sqlite3.h>
 #include <mysql/mysql.h>
 #include <iostream>
-struct _GAME{
+class _GAME{
+	public:
 	bool Active = true;
 	float Position_X = 0;
 	float Position_Y = 0;
@@ -38,6 +39,14 @@ struct _GAME{
 	int argc;
 	sqlite3 *database;
 	MYSQL *database_2;
-
+	void mysql_load_callback(MYSQL_ROW argv);
+	void load_songs();
+	void reload_songs();
+	void clear_songs();
+	void refresh_mpv();
+	void set_waypoint();
+	void load_waypoint();
+	static int sqlite_load_callback(void *unused, int argc, char **argv, char **column);
+	std::vector<std::string> songs[4];
 };
 #endif
